@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vocabulary_game_quiz_app/game/page/game_page.dart';
+import 'package:vocabulary_game_quiz_app/create_user/page/create_user_page.dart';
 
 class HomeScreenController extends ChangeNotifier {
    HomeScreenController(this.context);
@@ -7,9 +7,9 @@ class HomeScreenController extends ChangeNotifier {
   BuildContext context;
 
   goToPlayGame(){
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const GamePage()),
+      MaterialPageRoute(builder: (context) => const CreateUserPage()),
     );
   }
 

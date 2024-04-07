@@ -26,30 +26,45 @@ class _HomeScreenPage extends State<HomeScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Vocabulary Quiz Game')),
-      body: const Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text('Score : 20000',style: TextStyle(fontSize: 44),),
-            ),
-            
-          ],
+        appBar: AppBar(
+          title: Text('Vocabulary Quiz Game'),
+          automaticallyImplyLeading: false,
         ),
-      ),
-      bottomNavigationBar: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber
-                  ),
-                  onPressed: () {
-                    controller?.goToPlayGame();
-                  },
-                  child: const Text('Play',style: TextStyle(fontSize: 34),),
+        body:  Center(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Welcome to My Game',
+                  style: TextStyle(fontSize: 36),
+                  textAlign: TextAlign.center,
                 ),
-              )
-    );
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 200.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(90),
+                  child: GestureDetector(
+                    onTap: () {
+                      controller?.goToPlayGame();
+                    },
+                    child: Container(
+                      height: 200.0,
+                      width: 200.0,
+                      color: Colors.amber[200],
+                      child: const Center(
+                        child:  Text(
+                                    'Play',
+                                    style: TextStyle(fontSize: 34),
+                                  ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),);
   }
 }

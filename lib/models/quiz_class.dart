@@ -1,7 +1,7 @@
 class Quiz {
+  int id;
   List<String> choices;
-  int correctIndex;
 
-  Quiz({required this.choices, required this.correctIndex});
+  Quiz({required this.choices,required this.id});
 }
 
