@@ -45,12 +45,6 @@ class _GamePageState extends State<GamePage> {
             controller.oldChoice = controller.quizzes[controller.currentQuestionIndex].choices[index];
             controller.oldQuestionId = controller.quizzes[controller.currentQuestionIndex].id;
           }
-                // print(controller.userAnswer);
-                //         print('OLD : ${controller.oldQuestionId}');
-                //         print('OLD Choice ${controller.oldChoice}');
-                //         print('OLD Question ${controller.oldQuestionId}');
-                //         print('NEW :${controller.quizzes[controller.currentQuestionIndex].id}');
-                //         print('${controller.selectedChoices}');
         });
       },
       child: Container(
