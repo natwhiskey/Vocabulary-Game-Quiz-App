@@ -92,6 +92,48 @@ checkResult(){
 }
 
 
+ handleChoiceSelection(int index) {
+  selectedChoices = List.filled(selectedChoices.length, false);
+  selectedChoices[index] = true;
+
+  if (selectedChoices[index] != oldChoice && quizzes[currentQuestionIndex].id == oldQuestionId) {
+    if (userAnswer.isNotEmpty) {
+      userAnswer.removeLast();
+    }
+    userAnswer.add(quizzes[currentQuestionIndex].choices[index]);
+    oldChoice = quizzes[currentQuestionIndex].choices[index];
+  } else if (selectedChoices[index] != oldChoice && quizzes[currentQuestionIndex].id != oldQuestionId) {
+    userAnswer.add(quizzes[currentQuestionIndex].choices[index]);
+    oldChoice = quizzes[currentQuestionIndex].choices[index];
+    oldQuestionId = quizzes[currentQuestionIndex].id;
+  }
+}
+
+
+ handleNextButtonPress(BuildContext context) {
+  int temp = 0;
+  for (var i = 0; i < selectedChoices.length; i++) {
+    if (selectedChoices[i] == true) {
+      generateNewQuiz();
+      selectedChoices = List.filled(selectedChoices.length, false);
+      break;
+    } else {
+      temp++;
+    }
+    if (temp == 4) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const AlertDialog(
+            title: Center(child: Text("กรุณา เลือกคำตอบ", style: TextStyle(color: Colors.red))),
+            backgroundColor: Colors.white,
+          );
+        },
+      );
+    }
+  }
+}
+
 
 
 }

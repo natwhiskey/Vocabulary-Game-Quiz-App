@@ -29,22 +29,7 @@ class _GamePageState extends State<GamePage> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          controller.selectedChoices = List.filled(controller.selectedChoices.length, false);
-          controller.selectedChoices[index] = true;
-
-          if (controller.selectedChoices[index] != controller.oldChoice && controller.quizzes[controller.currentQuestionIndex].id == controller.oldQuestionId) {
-            if (controller.userAnswer.isNotEmpty) {
-              controller.userAnswer.removeLast();
-            }
-            print('1');
-            controller.userAnswer.add(controller.quizzes[controller.currentQuestionIndex].choices[index]);
-            controller.oldChoice = controller.quizzes[controller.currentQuestionIndex].choices[index];
-          } else if (controller.selectedChoices[index] != controller.oldChoice && controller.quizzes[controller.currentQuestionIndex].id != controller.oldQuestionId) {
-            print('2');
-            controller.userAnswer.add(controller.quizzes[controller.currentQuestionIndex].choices[index]);
-            controller.oldChoice = controller.quizzes[controller.currentQuestionIndex].choices[index];
-            controller.oldQuestionId = controller.quizzes[controller.currentQuestionIndex].id;
-          }
+        controller.handleChoiceSelection(index);
         });
       },
       child: Container(
@@ -93,7 +78,7 @@ class _GamePageState extends State<GamePage> {
                 itemBuilder: (context, index) {
                   return _buildChoiceButton(index, controller.quizzes[controller.currentQuestionIndex].choices[index]);
                 },
-                          ),
+                ),
               ),
             ),
           ],
@@ -103,26 +88,7 @@ class _GamePageState extends State<GamePage> {
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-            int temp = 0;
-            for (var i = 0; i < controller.selectedChoices.length; i++) {
-              if(controller.selectedChoices[i] == true){
-            controller.generateNewQuiz();
-            controller.selectedChoices = List.filled(controller.selectedChoices.length, false);
-                 
-                  break;
-              }else{
-                temp++;
-              }if (temp == 4) {
-                print(temp);
-                 showDialog(
-                   context: context,
-                   builder: (BuildContext context) {
-                return alert;
-                   },
-                   );
-              
-              }
-            }
+            controller.handleNextButtonPress(context);
             setState(() {});
           },
           child: const Text(
@@ -133,8 +99,4 @@ class _GamePageState extends State<GamePage> {
       ),
     );
   }
-   Widget alert = const AlertDialog(
-    title: Center(child: Text("กรุณา เลือกคำตอบ",style: TextStyle(color: Colors.red),)),
-    backgroundColor: Colors.white,
-   );
 }
