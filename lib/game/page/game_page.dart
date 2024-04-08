@@ -83,7 +83,7 @@ class _GamePageState extends State<GamePage> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 24.0),
               child: Text(
-                'Question ${controller.question}',
+                'Question ${controller.question} / ${controller.quizzes.length}',
                 style: TextStyle(fontSize: 34.0),
               ),
             ),
@@ -111,7 +111,6 @@ class _GamePageState extends State<GamePage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
           onPressed: () {
             int temp = 0;
             for (var i = 0; i < controller.selectedChoices.length; i++) {
@@ -136,7 +135,7 @@ class _GamePageState extends State<GamePage> {
             setState(() {});
           },
           child: const Text(
-            'Submit',
+            'Next',
             style: TextStyle(fontSize: 34),
           ),
         ),

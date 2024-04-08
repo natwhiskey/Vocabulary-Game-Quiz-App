@@ -33,12 +33,8 @@ class _SummaryPageState extends State<SummaryPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Summary'),
-        leading: BackButton(
-          color: Colors.black,
-          onPressed: () {
-            controller!.backToHome();
-          },
-        ),
+         automaticallyImplyLeading: false,
+
       ),
       body: Column(
         children: [
@@ -66,6 +62,18 @@ class _SummaryPageState extends State<SummaryPage> {
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {
+            controller?.backToHome();
+          },
+          child: Text(
+                'Play again',
+                style: TextStyle(fontSize: 34),
+              ),
+        ),
       ),
     );
   }
