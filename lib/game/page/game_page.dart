@@ -82,21 +82,18 @@ class _GamePageState extends State<GamePage> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Text('Choose the correct Spelling', style: TextStyle(fontSize: 28.0, color: Colors.purpleAccent)),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 48.0),
-              child: Column(
-                children: [
-                  for (int i = 0; i < controller.quizzes[controller.currentQuestionIndex].choices.length; i++)
-                    Column(
-                      children: [
-                        _buildChoiceButton(i, controller.quizzes[controller.currentQuestionIndex].choices[i]),
-                        SizedBox(height: 15.0),
-                      ],
-                    ),
-                ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 60,horizontal: 20),
+                child: ListView.builder(
+                itemCount: controller.quizzes[controller.currentQuestionIndex].choices.length,
+                itemBuilder: (context, index) {
+                  return _buildChoiceButton(index, controller.quizzes[controller.currentQuestionIndex].choices[index]);
+                },
+                          ),
               ),
             ),
           ],
